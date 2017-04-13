@@ -1,7 +1,7 @@
 # multicorrupt64
 terminal7 several times at once
 
-Take a .n64 rom and make several corrupted roms.
+Take a .n64 rom and make several corrupted roms.\n
 Launch them all at once and cascade the windows evenly out
 Makes finding interesting byte regions inside rom easier.
 
@@ -12,7 +12,7 @@ mupen version that accepts a --position x,y parameter
 given a rom it creates corruptions based on settings in multicorrupt.py
 afterwards opens all of them in individual mupen64plus instances 
 the mupen windows are moved to be evenly spaced on desktop
-'''python3 multicorrupt.py original_roms/PS.n64'''
+```python3 multicorrupt.py original_roms/PS.n64```
 
 
 relevant settings in multicorrupt.py:
@@ -31,7 +31,7 @@ Debugging a corrupted rom to find which change (maybe) made something happen
 
 given original uncorrupted rom;  changefile from a corrupted rom;  number N
 creates N new corruptions by dividing the changes in the changefile into N groups
-'''python3 debug_changes.py original_roms/PS.n64 output_roms/ramdisk/PS_corrupted_19.n64.changes 28'''
+```python3 debug_changes.py original_roms/PS.n64 output_roms/ramdisk/PS_corrupted_19.n64.changes 28```
 these debug corruptions are placed in output_roms/ramdisk/DEBUG/
 
 
