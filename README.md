@@ -20,7 +20,9 @@ be one, but just for clarity for my own sake.
 given a rom it creates corruptions based on settings in multicorrupt.py  
 afterwards opens all of them in individual mupen64plus instances  
 the mupen windows are moved to be evenly spaced on desktop  
-```python3 multicorrupt.py original_roms/PS.n64```  
+```python3 multicorrupt.py original_roms/PS.n64```
+
+
 relevant settings in multicorrupt.py:  
 * mupen_instances is number of corruptions to make and open (4-20~ suggested)  
 * instance_res is size of one mupen_window  
