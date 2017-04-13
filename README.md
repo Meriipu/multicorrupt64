@@ -1,8 +1,10 @@
 # multicorrupt64
 terminal7 several times at once
 
-Take a .n64 rom and make several corrupted roms.  return
+Take a .n64 rom and make several corrupted roms.  
+
 Launch them all at once and cascade the windows evenly out
+
 
 Makes finding interesting byte regions inside rom easier.
 
