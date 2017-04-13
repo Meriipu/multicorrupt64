@@ -27,6 +27,7 @@ relevant settings in multicorrupt.py:
 * mupen_instances is number of corruptions to make and open (4-20~ suggested)  
 * instance_res is size of one mupen_window  
 * screen_res is size of actual screen  
+* savespace is a width and a height at the right and bottom of screen to not place mupen instances in
 
 inside __init__ of the Corruption class in multicorrupt.py:  
 * make as many calls to self.mutate(mutation_count, start_percentage, step_percentage) as desired  
