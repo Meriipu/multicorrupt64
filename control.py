@@ -94,6 +94,11 @@ def onKeyPress(event):
   #if counter == 0:
   #  global clients
   #  clients = get_client_list('mupen64plus')
+  
+  #refetch before restarting mupen too
+  if event.keysym in ['F9']:
+    global clients
+    clients = get_client_list('mupen64plus')
     
   if event.keysym == 'Escape':
     root.destroy()

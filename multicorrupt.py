@@ -1,12 +1,24 @@
 from multiprocessing import Pool, TimeoutError, cpu_count
 from functools import partial
 from sys import argv
+import math
 import random, array, os, subprocess, time
+def calc_mupen_size(W,H):
+    results = []
+    for row_N in range(1,mupen_instances+1):
+      row_width = math.floor(W/float(row_N))
+      col_height = math.floor(row_width*(480/640.))
+      if col_height*sum(divmod(mupen_instances, row_N)) <= H:
+        results.append((row_width, col_height))
+    return max(results)
+#fit to region with space saved on right and bottom edge
+mupen_instances = 25
 
-mupen_instances = 20
-#instance_res = (280,210)
-instance_res = (220,165)
-screen_res = 1920,1200
+screen_res = (1920,1200)
+savespace = (400, 150)
+
+RESW, RESH = screen_res[0]-savespace[0],  screen_res[1]-savespace[1]
+instance_res = calc_mupen_size(RESW, RESH)
 
 #USAGE:  python3 multicorrupt.py original_roms/BK64.n64
 #outputs a bunch of roms to output_roms/ramdisk/ and launches them with mupen64plus
@@ -19,16 +31,13 @@ class Corruption(object):
     if static_changes_string:
       self.make_static_changes(static_changes_string)
     else:
-      #spot = 96  + 0.1225
-      #spot = 96  + 0.122
-      #spot = 96  + 0.125
       
-      #-self.mutate(20,  spot=mupen_instances*4 + id-1, step=1)
+      #self.mutate(20,  spot=mupen_instances*4 + id-1, step=1)
+      
       #self.mutate(50,  spot=83.5, step=3)
-      #self.mutate(500,  spot=84, step=1)
-      #self.mutate(30,  spot=85, step=1)
-      #self.mutate(1, 4 + 0.5*1, 1)
-      self.mutate(100, 3 + 0.75, 6.25)
+      
+      #self.mutate(100, 3 + 0.75, 6.25)
+      self.mutate(100, 3 + 0.75, 6.25 + 10)
       
       
   def mutate(self, mutation_count, spot, step):
@@ -79,7 +88,7 @@ class Corruption(object):
       
 def launch_single(path, instance_number):
   def calc_instance_position(i):  
-    instances_per_row = (screen_res[0]-instance_res[0])//instance_res[0]
+    instances_per_row = (RESW)//instance_res[0]
     #X = [0,1,2, ... ,0,1,2,...]*width  + pixel_offset
     x = (i%instances_per_row)*instance_res[0]    +   2*(i%instances_per_row)
     #y = height*[0,0,0,...,1,1,1,...,2,2,2,...]  + pixel_offset
