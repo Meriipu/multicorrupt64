@@ -2,25 +2,19 @@
 terminal7 several times at once
 
 Take a .n64 rom and make several corrupted roms.  
-return
 Launch them all at once and cascade the windows evenly out
 
 
-Makes finding interesting byte regions inside rom easier.
+Makes finding interesting byte regions inside rom easier.  
 
 
-
-Moving/cascading mupen64plus across screen as of now requires a patched 
-
-mupen version that accepts a --position x,y parameter 
+Moving/cascading mupen64plus across screen as of now requires a patched  
+mupen version that accepts a --position x,y parameter
 
 
-
-given a rom it creates corruptions based on settings in multicorrupt.py
-
-afterwards opens all of them in individual mupen64plus instances 
-
-the mupen windows are moved to be evenly spaced on desktop
+given a rom it creates corruptions based on settings in multicorrupt.py  
+afterwards opens all of them in individual mupen64plus instances  
+the mupen windows are moved to be evenly spaced on desktop  
 
 ```python3 multicorrupt.py original_roms/PS.n64```
 
