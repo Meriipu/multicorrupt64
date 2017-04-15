@@ -30,7 +30,7 @@ if __name__ == '__main__':
   
   out_paths = []
   basename = os.path.basename(original_rom_path)
-  for i,chunk in enumerate(chunks(lines, splits)):
+  for i,chunk in enumerate(chunks(lines, splits),start=1):
     static_changes_string = ''.join(chunk).strip()
     corruption = multicorrupt.Corruption(L, i, static_changes_string)
     out_paths.append(corruption.save(debug_dir,  '{}_DEBUG.n64'.format(basename)))
