@@ -3,23 +3,27 @@ from functools import partial
 from sys import argv
 import random, math, array, os, subprocess, time
 
-def calc_mupen_size(W,H):
-    results = []
-    for row_N in range(1,mupen_instances+1):
-      row_width = math.floor(W/float(row_N))
-      col_height = math.floor(row_width*(480/640.))
-      if col_height*sum(divmod(mupen_instances, row_N)) <= H:
-        results.append((row_width, col_height))
-    return max(results)
+def calc_mupen_res(N,region_w,region_h):
+  """find res to fit N mupen instances in region"""
+  results = []
+  for row_length in range(1,N+1):
+    col_length = math.ceil(N/float(row_length))
+    instance_width = int(math.floor(  min(640, region_w/float(row_length)  )))
+    instance_height = int(math.floor(instance_width*(480.0/640.0)))
+    if instance_height*col_length <= region_h  and  instance_width*row_length <= region_w:
+      results.append((instance_width, instance_height))
+
+  return max(results)
+
 #fit to region with space saved on right and bottom edge
-mupen_instances = 24
+mupen_instances = 20
 
 screen_res = (1920,1200)
 savespace = (400, 150)
 
 RESW, RESH = screen_res[0]-savespace[0],  screen_res[1]-savespace[1]
-instance_res = calc_mupen_size(RESW, RESH)
-
+instance_res = calc_mupen_res(mupen_instances, RESW, RESH)
+print(instance_res)
 #USAGE:  python3 multicorrupt.py original_roms/BK64.n64
 #outputs a bunch of roms to output_roms/ramdisk/ and launches them with mupen64plus
 #depends on patched version of mupen that accepts --position parameter for window
