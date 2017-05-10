@@ -103,10 +103,14 @@ def launch_single(instance_number,corrupted_rom_path):
     #y = height*[0,0,0,...,1,1,1,...,2,2,2,...]  + pixel_offset
     y = instance_res[1]*(i//instances_per_row)   +   2*(i//instances_per_row)
     return x,y
-  
+
   res = "%dx%d" % instance_res
   pos = "%d,%d" % calc_instance_position(instance_number)
-  p = subprocess.Popen(['mupen64plus', '--nosaveoptions', '--resolution', res, '--position', pos, corrupted_rom_path])
+
+  env = os.environ.copy()
+  env['SDL_VIDEO_WINDOW_POS'] = pos
+  p = subprocess.Popen(['mupen64plus', '--nosaveoptions', '--resolution', res, corrupted_rom_path],  env=env)
+  #p = subprocess.Popen(['mupen64plus', '--nosaveoptions', '--resolution', res, '--position', pos, corrupted_rom_path])
 
 def launch_many(path_list):
   processes = [Process(target=launch_single, args=(i,path)) for (i,path) in enumerate(path_list)]
