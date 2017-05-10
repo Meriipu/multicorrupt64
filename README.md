@@ -7,8 +7,10 @@ Launch them all at once and cascade the windows evenly out
 
 Makes finding interesting byte regions inside rom easier.  
 
-(moving/cascading mupen64plus across screen as of now requires a patched  
-mupen version that accepts a --position x,y parameter)
+(moving/cascading mupen64plus across screen does not seem to require 
+the patched mupen version that accepts a --position x,y parameter after all;
+there is an environment-variable SDL_VIDEO_WINDOW_POS=x,y that works the same 
+way in the upstream version of mupen64plus-ui-console)
 
 Despite the output directory being named ramdisk, it does not really have to  
 be one, but just for clarity for my own sake.  
