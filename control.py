@@ -15,6 +15,7 @@ import Xlib.XK
 import Xlib.error
 import Xlib.ext.xtest
 
+#function copied/slightly modified from some post in a thread somewhere I forgot where
 def get_client_list(winname):
     def get_property_value(property_reply):
         assert isinstance(property_reply, xcffib.xproto.GetPropertyReply)
